@@ -138,7 +138,7 @@ void Subscriber::generateMonthlyBill()
 
     cout << "\n--------------------------------------------------------------\n";
     cout << "For User " << name << " monthly bill generated: \n" ;
-    cout << "\n--------------------------------------------------------------\n\n";
+    cout << "Address: "<<address<<"\n--------------------------------------------------------------\n\n";
 
     int total = 0;
     for(auto deliverables:subcriptions)

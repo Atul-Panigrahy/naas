@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include "subscriber.h"
 using namespace std;
 
 class Agent
@@ -14,12 +15,13 @@ public:
     int age;
     bool active;
     int salaryOfMonth;
+    vector<Subscriber*> &subs;
     vector<int>subscriberList;
     vector<string> systemMessage;
     map<int,string> magazineName;
     map<int,int> magazinePrice;
     
-    Agent(int _id, string _name,int _age);
+    Agent(int _id, string _name,int _age,vector<Subscriber*> &v);
     void generateMagazines();
     void addSubscriber(int _id);
     void removeSubscriber(int _id);

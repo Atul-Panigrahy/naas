@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-Agent::Agent(int _id, string _name,int _age)
+Agent::Agent(int _id, string _name,int _age,vector<Subscriber*>& v):subs(v)
 {
     agentId = _id;
     name = _name;
@@ -99,7 +99,24 @@ void Agent::removeSubscriber(int _id)
     cout << "Agent " << agentId << " Will no longer deliver the magazines to the subscirber " << _id << "\n";
     cout << "\n--------------------------------------------------------------\n";
 }
+ void Agent::printDeliveriesToday(){
+     
+     cout<<endl<< "Agent: "<<name<<endl;
+     cout<< "Address| Subscription"<<endl;
+      cout<< "-----------------------------------"<<endl;
+     for (int k : subscriberList){
+         cout<<subs[k]->address<<" | ";
+         for(int i:subs[k]->subcriptions){
+             cout<<magazineName[i]<<",";
+         }
+         cout<<endl;
 
+     }
+      cout<< "-----------------------------------"<<endl;
+ }
+ void generateMonthlyBill(){
+
+ }
 
 void Agent::viewSystemMessage()
 {
