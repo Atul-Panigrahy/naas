@@ -1,9 +1,4 @@
 #include "subscriber.h"
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-using namespace std;
 
 Subscriber::Subscriber(int _id, string _name, int _age, string _address)
 {
@@ -53,14 +48,14 @@ void Subscriber::printSubscriptions()
         return;
     }
     cout << "\n--------------------------------------------------------------\n";
-    cout << "User " << name << " subscription list: \n";
-    cout << "\n--------------------------------------------------------------\n\n";
+    cout << "||User " << name << " subscription list: \n";
+    cout << "--------------------------------------------------------------\n";
 
     for (auto deliverables : subcriptions)
     {
         cout << "id= " << deliverables << " name = " << magazineName[deliverables] << "\n";
     }
-    cout << "\n--------------------------------------------------------------\n\n";
+    cout << "--------------------------------------------------------------\n\n";
 }
 
 void Subscriber::viewAllAvailableSubscriptions()

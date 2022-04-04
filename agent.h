@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <iostream>
 #include <map>
 #include "subscriber.h"
 using namespace std;

@@ -8,6 +8,7 @@
 #include "manager.h"
 using namespace std;
 #include <unistd.h>
+
 /*
 Features to implement
 
@@ -19,9 +20,66 @@ vector<Manager *> mag;
 vector<Agent *> ag;
 void manager()
 {
+    cout << "Welcome Manager" << endl;
+    cout << "Please select an opttion\n";
+    cout << "0 -> print subscribers\n";
+    cout << "1 -> print agents\n\n";
+    int choice;
+    cin >> choice;
+
+    if (choice == 0)
+    {
+        mag[0]->getSubscriberList();   
+    }
+    else if (choice == 1)
+    {
+         mag[0]->getDeliveryAgentList();
+    }
+    else
+    {
+        cout << "Invalid input to the system\n Restart the system\n";
+    }
+    
+   
+}
+void subscriber(){
+    cout << "Welcome Subscriber" << endl;
+    cout << "Please select an opttion\n";
+    cout << "0 -> print subscription\n";
+    cout << "1 -> monthly bill\n";
+    int choice;
+    cin >> choice;
+
+    if (choice == 0)
+    {
+        cout << "subscription list...\n";
+        for (auto i : subs)
+            {
+                i->printSubscriptions();
+                sleep(0.5);
+            }
+
+        
+    }
+    else if (choice == 1)
+    {
+        cout << "monthly bill...\n";
+        for (auto i : subs)
+            {
+                i->generateMonthlyBill();
+                sleep(0.5);
+            }
+    }
+    else
+    {
+        cout << "Invalid input to the system\n Restart the system\n";
+    }
+  
 }
 void init()
 {
+    
+   
     subs.push_back(new Subscriber(0, "ritesh nayak", 24, "b312 Mv Hall NIT,rourkela"));
     subs.back()->subcriptions.push_back(9);
     subs.push_back(new Subscriber(1, "atish ranna", 24, "a33 koelnagar A block,rourkela"));
@@ -44,6 +102,8 @@ void init()
     ag.push_back(new Agent(1, "anwesh kapoor", 22, subs));
     ag.back()->addSubscriber(3);
     ag.back()->addSubscriber(4);
+
+    mag.push_back(new Manager(0,"subhra singh",32,subs,ag));
 }
 
 void agent()
@@ -115,6 +175,7 @@ int main()
     if (choice == 0)
     {
         cout << "Logged into the system as a Subcriber\n";
+        subscriber();
     }
     else if (choice == 1)
     {
@@ -124,7 +185,7 @@ int main()
     else if (choice == 2)
     {
         cout << "Logged into the system as Manger of the Delivery Agency\n";
-        Manager *s = new Manager(0, "john smith", 34);
+        manager();
     }
     else
     {

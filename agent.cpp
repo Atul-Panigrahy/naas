@@ -1,10 +1,4 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <vector>
-#include <map>
 #include "agent.h"
-using namespace std;
 
 Agent::Agent(int _id, string _name, int _age, vector<Subscriber *> &v) : subs(v)
 {

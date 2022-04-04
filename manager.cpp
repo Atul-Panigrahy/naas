@@ -1,12 +1,7 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <vector>
-#include <map>
-#include "manager.h"
-using namespace std;
 
-Manager::Manager(int _id, string _name, int _age)
+#include "manager.h"
+
+Manager::Manager(int _id, string _name, int _age,vector<Subscriber *> &v,vector<Agent *> &a) : subs(v),ag(a)
 {
     managerId = _id;
     name = _name;
@@ -39,6 +34,25 @@ void Manager::generateMagazines()
     magazinePrice[8] = 44;
     magazinePrice[9] = 7;
     magazinePrice[10] = 4;
+}
+
+void Manager::getSubscriberList(){
+    cout<<" subscriber List \n";
+    cout<<" name | age \n";
+    cout<<"--------------------\n";
+    for(auto i : subs){
+        cout<<i->name<<" | "<<i->age<<endl;
+    }
+    cout<<endl;
+}
+void Manager::getDeliveryAgentList(){
+    cout<<" Agent List \n";
+    cout<<" name | age \n";
+    cout<<"--------------------\n";
+    for(auto i : ag){
+        cout<<i->name<<" | "<<i->age<<endl;
+    }
+    cout<<endl;
 }
 
 void Manager::addSubscriber(int _id)
