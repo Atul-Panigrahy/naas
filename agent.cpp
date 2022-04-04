@@ -6,9 +6,7 @@
 #include "agent.h"
 using namespace std;
 
-
-
-Agent::Agent(int _id, string _name,int _age,vector<Subscriber*>& v):subs(v)
+Agent::Agent(int _id, string _name, int _age, vector<Subscriber *> &v) : subs(v)
 {
     agentId = _id;
     name = _name;
@@ -17,7 +15,6 @@ Agent::Agent(int _id, string _name,int _age,vector<Subscriber*>& v):subs(v)
     salaryOfMonth = 0;
     generateMagazines();
 }
-
 
 void Agent::generateMagazines()
 {
@@ -32,7 +29,7 @@ void Agent::generateMagazines()
     magazineName[8] = "Skeptic";
     magazineName[9] = "Science Reporter";
     magazineName[10] = "Astronomy";
-    
+
     // map magazine id to price
     magazinePrice[1] = 16;
     magazinePrice[2] = 67;
@@ -44,20 +41,18 @@ void Agent::generateMagazines()
     magazinePrice[8] = 44;
     magazinePrice[9] = 7;
     magazinePrice[10] = 4;
-
 }
-
 
 void Agent::addSubscriber(int _id)
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this agent!! Join agency first\n";
         cout << "\n--------------------------------------------------------------\n";
         return;
     }
 
-    if(find(subscriberList.begin(),subscriberList.end(),_id) != subscriberList.end())
+    if (find(subscriberList.begin(), subscriberList.end(), _id) != subscriberList.end())
     {
         cout << "Subscirber is already registered for the delivery service\n";
         cout << "\n--------------------------------------------------------------\n";
@@ -67,30 +62,28 @@ void Agent::addSubscriber(int _id)
     subscriberList.push_back(_id);
     cout << "Agent " << agentId << " Will deliver the magazines to the subscirber " << _id << "\n";
     cout << "\n--------------------------------------------------------------\n";
-    
 }
-
 
 void Agent::removeSubscriber(int _id)
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this agent!! Join agency first\n";
         cout << "\n--------------------------------------------------------------\n";
         return;
     }
 
-    if(find(subscriberList.begin(),subscriberList.end(),_id) != subscriberList.end())
+    if (find(subscriberList.begin(), subscriberList.end(), _id) != subscriberList.end())
     {
         cout << "Subscirber is Not registered for the delivery service\n";
         cout << "\n--------------------------------------------------------------\n";
         return;
     }
 
-    vector<int>updatedList;
-    for(auto id:subscriberList)
+    vector<int> updatedList;
+    for (auto id : subscriberList)
     {
-        if(id != _id)
+        if (id != _id)
         {
             updatedList.push_back(id);
         }
@@ -99,28 +92,46 @@ void Agent::removeSubscriber(int _id)
     cout << "Agent " << agentId << " Will no longer deliver the magazines to the subscirber " << _id << "\n";
     cout << "\n--------------------------------------------------------------\n";
 }
- void Agent::printDeliveriesToday(){
-     
-     cout<<endl<< "Agent: "<<name<<endl;
-     cout<< "Address| Subscription"<<endl;
-      cout<< "-----------------------------------"<<endl;
-     for (int k : subscriberList){
-         cout<<subs[k]->address<<" | ";
-         for(int i:subs[k]->subcriptions){
-             cout<<magazineName[i]<<",";
-         }
-         cout<<endl;
+void Agent::printDeliveriesToday()
+{
 
-     }
-      cout<< "-----------------------------------"<<endl;
- }
- void generateMonthlyBill(){
+    cout << endl
+         << "Agent: " << name << endl;
+    cout << "Address| Subscription" << endl;
+    cout << "-----------------------------------" << endl;
+    for (int k : subscriberList)
+    {
+        cout << subs[k]->address << " | ";
+        for (int i : subs[k]->subcriptions)
+        {
+            cout << magazineName[i] << ",";
+        }
+        cout << endl;
+    }
+    cout << "-----------------------------------" << endl;
+}
+void Agent::generateMonthlyBill()
+{
+    cout << endl
+         << "Agent: " << name << endl;
+    cout << "Bill Generation for Customer" << endl;
+    cout << "*********************************" << endl;
+    double tot = 0;
+    for (int k : subscriberList)
+    {
+        tot += subs[k]->generateMonthlyBill();
+    }
 
- }
+    cout << "*********************************" << endl;
+    cout << "Bill Generation for Agent" << endl;
+    cout << "*********************************" << endl;
+    cout << "Delivery Commission (2.5%): " << tot << endl;
+    cout << "****************************************" << endl;
+}
 
 void Agent::viewSystemMessage()
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this agent!! Join agency first\n";
         cout << "\n--------------------------------------------------------------\n";
@@ -128,8 +139,8 @@ void Agent::viewSystemMessage()
     }
 
     cout << "System generated message for the agent " << name << " ->";
-    int count = 0 ;
-    for(auto it:systemMessage)
+    int count = 0;
+    for (auto it : systemMessage)
     {
         cout << count++ << "  => " << it << endl;
     }

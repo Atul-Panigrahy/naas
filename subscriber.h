@@ -27,7 +27,7 @@ public:
     void printSubscriptions();
     void viewAllAvailableSubscriptions();
     bool requestChangeOfSubscriptions(int _id);
-    void generateMonthlyBill();
+    double generateMonthlyBill();
     void viewSystemMessage();
     bool requestHaltOfSubscriptions();
     bool payDues();

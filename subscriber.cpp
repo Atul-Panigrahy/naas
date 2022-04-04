@@ -5,9 +5,7 @@
 #include <algorithm>
 using namespace std;
 
-
-
-Subscriber::Subscriber(int _id, string _name,int _age,string _address)
+Subscriber::Subscriber(int _id, string _name, int _age, string _address)
 {
     subscriberId = _id;
     name = _name;
@@ -16,7 +14,7 @@ Subscriber::Subscriber(int _id, string _name,int _age,string _address)
     address = _address;
     paymentPending = false;
     paymentPendingForNumberOfMonths = 0;
-    amountPending = 0 ;
+    amountPending = 0;
     generateMagazines();
 }
 
@@ -33,7 +31,7 @@ void Subscriber::generateMagazines()
     magazineName[8] = "Skeptic";
     magazineName[9] = "Science Reporter";
     magazineName[10] = "Astronomy";
-    
+
     // map magazine id to price
     magazinePrice[1] = 16;
     magazinePrice[2] = 67;
@@ -45,21 +43,20 @@ void Subscriber::generateMagazines()
     magazinePrice[8] = 44;
     magazinePrice[9] = 7;
     magazinePrice[10] = 4;
-
 }
 
 void Subscriber::printSubscriptions()
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this user, please create an account to enjoy our services\n";
         return;
     }
     cout << "\n--------------------------------------------------------------\n";
-    cout << "User " << name << " subscription list: \n" ;
+    cout << "User " << name << " subscription list: \n";
     cout << "\n--------------------------------------------------------------\n\n";
 
-    for(auto deliverables:subcriptions)
+    for (auto deliverables : subcriptions)
     {
         cout << "id= " << deliverables << " name = " << magazineName[deliverables] << "\n";
     }
@@ -68,22 +65,22 @@ void Subscriber::printSubscriptions()
 
 void Subscriber::viewAllAvailableSubscriptions()
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this user, please create an account to enjoy our services\n";
         return;
     }
 
     cout << "\n--------------------------------------------------------------\n";
-    cout << "For User " << name << " All available subscriptions list: \n" ;
+    cout << "For User " << name << " All available subscriptions list: \n";
     cout << "\n--------------------------------------------------------------\n\n";
 
-    for(auto deliverables:magazineName)
+    for (auto deliverables : magazineName)
     {
         int _id = deliverables.first;
         string _name = deliverables.second;
         string subcriptionStatus = "Not Taken";
-        if(find(subcriptions.begin(),subcriptions.end(),_id)!= subcriptions.end())
+        if (find(subcriptions.begin(), subcriptions.end(), _id) != subcriptions.end())
         {
             subcriptionStatus = "taken";
         }
@@ -94,7 +91,7 @@ void Subscriber::viewAllAvailableSubscriptions()
 
 bool Subscriber::requestChangeOfSubscriptions(int _id)
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this user, please create an account to enjoy our services\n";
         return false;
@@ -104,11 +101,11 @@ bool Subscriber::requestChangeOfSubscriptions(int _id)
     try
     {
         string subcriptionStatus = "Not Taken";
-        if(find(subcriptions.begin(),subcriptions.end(),_id)!= subcriptions.end())
+        if (find(subcriptions.begin(), subcriptions.end(), _id) != subcriptions.end())
         {
             subcriptionStatus = "taken";
         }
-        if(subcriptionStatus == "taken")
+        if (subcriptionStatus == "taken")
         {
             cout << "User is already subscribed to the magazine\n";
             return true;
@@ -119,7 +116,7 @@ bool Subscriber::requestChangeOfSubscriptions(int _id)
         cout << "The request will be in effect within 7 working days\n";
         return true;
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         cout << "Request for change of subscription unsuccessful\n";
         cout << "Please try again\n";
@@ -128,46 +125,47 @@ bool Subscriber::requestChangeOfSubscriptions(int _id)
     }
 }
 
-void Subscriber::generateMonthlyBill()
+double Subscriber::generateMonthlyBill()
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this user, please create an account to enjoy our services\n";
-        return ;
+        return 0;
     }
 
-    cout << "\n--------------------------------------------------------------\n";
-    cout << "For User " << name << " monthly bill generated: \n" ;
-    cout << "Address: "<<address<<"\n--------------------------------------------------------------\n\n";
+    cout << "\t--------------------------------------------------------------\n";
+    cout << "\t||For User " << name << " monthly bill generated: \n";
+    cout << "\t||Address: " << address << "\n\t--------------------------------------------------------------\n\n";
 
     int total = 0;
-    for(auto deliverables:subcriptions)
+    for (auto deliverables : subcriptions)
     {
-        cout << "id= " << deliverables << " name = " << magazineName[deliverables] ;
-        cout << " cost = " << magazinePrice[deliverables]*30 << "\n";
-        total += magazinePrice[deliverables]*30;
+        cout << "\tid= " << deliverables << " name = " << magazineName[deliverables];
+        cout << " cost = " << magazinePrice[deliverables] * 30 << "\n";
+        total += magazinePrice[deliverables] * 30;
     }
-    cout << "total cost for this month: " << total << "\n";
+    cout << "\ttotal cost for this month: " << total << "\n";
     paymentPending = true;
-    paymentPendingForNumberOfMonths +=1;
+    paymentPendingForNumberOfMonths += 1;
     amountPending += total;
     systemMessage.push_back("Please deposit monthly due to continue our service");
-    cout << "\n--------------------------------------------------------------\n\n";
+    cout << "\n\t--------------------------------------------------------------" << endl;
+    return total;
 }
 
 void Subscriber::viewSystemMessage()
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this user, please create an account to enjoy our services\n";
         return;
     }
 
     cout << "\n--------------------------------------------------------------\n";
-    cout << "For User " << name << " system messages are: \n" ;
+    cout << "For User " << name << " system messages are: \n";
     cout << "\n--------------------------------------------------------------\n\n";
     int count = 0;
-    for(auto message: systemMessage)
+    for (auto message : systemMessage)
     {
         cout << count++ << " => " << message << "\n";
     }
@@ -176,13 +174,13 @@ void Subscriber::viewSystemMessage()
 
 bool Subscriber::payDues()
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this user, please create an account to enjoy our services\n";
         return false;
     }
 
-    if(paymentPending == false)
+    if (paymentPending == false)
     {
         cout << "no pending payment\n";
         cout << "\n--------------------------------------------------------------\n\n";
@@ -193,11 +191,11 @@ bool Subscriber::payDues()
     cout << "Payement by cash(0) or cheque(1)\n";
     int choice;
     cin >> choice;
-    if(choice == 0)
+    if (choice == 0)
     {
         cout << "Delivery agent will collect the monthly due tommorrow\n";
     }
-    else if(choice == 1)
+    else if (choice == 1)
     {
         int chequeNumber;
         cout << " Enter cheque number ";
@@ -216,16 +214,15 @@ bool Subscriber::payDues()
     return true;
 }
 
-
 bool Subscriber::stopService()
 {
-    if(!active)
+    if (!active)
     {
         cout << "Service not available for this user, please create an account to enjoy our services\n";
         return false;
     }
 
-    if(paymentPending)
+    if (paymentPending)
     {
         cout << "Please Clear payments before stop using the service\n";
         return false;
@@ -233,9 +230,7 @@ bool Subscriber::stopService()
     active = false;
     paymentPending = false;
     paymentPendingForNumberOfMonths = 0;
-    amountPending = 0 ;
+    amountPending = 0;
     cout << "Thank you for joining our service, Please create an acount to avail our service once more\n";
     return true;
 }
-
-
