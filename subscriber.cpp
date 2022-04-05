@@ -1,4 +1,7 @@
 #include "subscriber.h"
+#include "user.h"
+#include "payment.h"
+
 
 Subscriber::Subscriber(int _id, string _name, int _age, string _address)
 {

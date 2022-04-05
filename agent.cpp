@@ -1,4 +1,5 @@
 #include "agent.h"
+#include "payment.h"
 
 Agent::Agent(int _id, string _name, int _age, vector<Subscriber *> &v) : subs(v)
 {

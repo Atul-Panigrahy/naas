@@ -7,9 +7,10 @@
 #include <iostream>
 #include <map>
 #include "subscriber.h"
+#include "payment.h"
 using namespace std;
 
-class Agent
+class Agent : public User
 {
 public:
     int agentId;

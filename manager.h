@@ -10,7 +10,7 @@
 #include "subscriber.h"
 using namespace std;
 
-class Manager
+class Manager : public User
 {
 public:
     int managerId;

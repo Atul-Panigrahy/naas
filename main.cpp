@@ -3,17 +3,13 @@
 #include <map>
 #include <string>
 #include <algorithm>
+#include <unistd.h>
 #include "subscriber.h"
 #include "agent.h"
 #include "manager.h"
+#include "cash.h"
+#include "cheque.h"
 using namespace std;
-#include <unistd.h>
-
-/*
-Features to implement
-
-
-*/
 
 vector<Subscriber *> subs;
 vector<Manager *> mag;
@@ -29,20 +25,19 @@ void manager()
 
     if (choice == 0)
     {
-        mag[0]->getSubscriberList();   
+        mag[0]->getSubscriberList();
     }
     else if (choice == 1)
     {
-         mag[0]->getDeliveryAgentList();
+        mag[0]->getDeliveryAgentList();
     }
     else
     {
         cout << "Invalid input to the system\n Restart the system\n";
     }
-    
-   
 }
-void subscriber(){
+void subscriber()
+{
     cout << "Welcome Subscriber" << endl;
     cout << "Please select an opttion\n";
     cout << "0 -> print subscription\n";
@@ -54,32 +49,28 @@ void subscriber(){
     {
         cout << "subscription list...\n";
         for (auto i : subs)
-            {
-                i->printSubscriptions();
-                sleep(0.5);
-            }
-
-        
+        {
+            i->printSubscriptions();
+            sleep(0.5);
+        }
     }
     else if (choice == 1)
     {
         cout << "monthly bill...\n";
         for (auto i : subs)
-            {
-                i->generateMonthlyBill();
-                sleep(0.5);
-            }
+        {
+            i->generateMonthlyBill();
+            sleep(0.5);
+        }
     }
     else
     {
         cout << "Invalid input to the system\n Restart the system\n";
     }
-  
 }
 void init()
 {
-    
-   
+
     subs.push_back(new Subscriber(0, "ritesh nayak", 24, "b312 Mv Hall NIT,rourkela"));
     subs.back()->subcriptions.push_back(9);
     subs.push_back(new Subscriber(1, "atish ranna", 24, "a33 koelnagar A block,rourkela"));
@@ -103,7 +94,7 @@ void init()
     ag.back()->addSubscriber(3);
     ag.back()->addSubscriber(4);
 
-    mag.push_back(new Manager(0,"subhra singh",32,subs,ag));
+    mag.push_back(new Manager(0, "subhra singh", 32, subs, ag));
 }
 
 void agent()
@@ -132,7 +123,7 @@ void agent()
             }
             sleep(1);
         }
-        cout<<"generating monthly bill...";
+        cout << "generating monthly bill...";
         sleep(2);
         for (auto i : ag)
         {

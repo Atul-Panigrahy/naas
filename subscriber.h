@@ -6,9 +6,11 @@
 #include <map>
 #include <iostream>
 #include <algorithm>
+#include "user.h"
+#include "payment.h"
 using namespace std;
 
-class Subscriber
+class Subscriber : public User
 {
 public:
     int subscriberId;
