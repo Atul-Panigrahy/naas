@@ -14,9 +14,6 @@ class Agent : public User
 {
 public:
     int agentId;
-    string name;
-    int age;
-    bool active;
     int salaryOfMonth;
     vector<Subscriber*> &subs;
     vector<int>subscriberList;

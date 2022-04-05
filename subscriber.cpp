@@ -170,47 +170,6 @@ void Subscriber::viewSystemMessage()
     cout << "\n--------------------------------------------------------------\n\n";
 }
 
-bool Subscriber::payDues()
-{
-    if (!active)
-    {
-        cout << "Service not available for this user, please create an account to enjoy our services\n";
-        return false;
-    }
-
-    if (paymentPending == false)
-    {
-        cout << "no pending payment\n";
-        cout << "\n--------------------------------------------------------------\n\n";
-        return true;
-    }
-
-    cout << "Payment due" << amountPending << " INR\n";
-    cout << "Payement by cash(0) or cheque(1)\n";
-    int choice;
-    cin >> choice;
-    if (choice == 0)
-    {
-        cout << "Delivery agent will collect the monthly due tommorrow\n";
-    }
-    else if (choice == 1)
-    {
-        int chequeNumber;
-        cout << " Enter cheque number ";
-        cin >> chequeNumber;
-        cout << "Payment collected successfully\n";
-    }
-    else
-    {
-        cout << "Unknown argument to the system\n";
-        return false;
-    }
-    paymentPending = false;
-    paymentPendingForNumberOfMonths = 0;
-    amountPending = 0;
-    cout << "\n--------------------------------------------------------------\n\n";
-    return true;
-}
 
 bool Subscriber::stopService()
 {

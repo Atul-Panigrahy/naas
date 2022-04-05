@@ -1,10 +1,10 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 
+#include <iostream>
 #include <vector>
 #include <string>
 #include <map>
-#include <iostream>
 #include <algorithm>
 #include "agent.h"
 #include "subscriber.h"
@@ -14,8 +14,6 @@ class Manager : public User
 {
 public:
     int managerId;
-    string name;
-    int age;
     map<int,string> magazineName;
     map<int,int> magazinePrice;
     vector<Subscriber*> &subs;

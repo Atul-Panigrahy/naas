@@ -1,7 +1,9 @@
 all: naas
 
-naas: main.o subscriber.o agent.o manager.o
-		g++ main.o subscriber.o agent.o manager.o -o naas
+
+naas: main.o user.o subscriber.o agent.o manager.o payment.o cash.o cheque.o
+		echo "build done"
+		g++ main.o user.o subscriber.o agent.o manager.o payment.o cash.o cheque.o -o naas
 
 main.o: main.cpp
 		g++ -c main.cpp
@@ -18,7 +20,7 @@ agent.o: agent.cpp
 manager.o: manager.cpp
 		g++ -c manager.cpp
 
-payment.o: payment.cpp
+payment.o: payment.cpp subscriber.o
 		g++ -c payment.cpp
 
 cash.o: cash.cpp

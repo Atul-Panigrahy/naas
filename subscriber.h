@@ -1,22 +1,18 @@
 #ifndef SUBSCRIBER_H
 #define SUBSCRIBER_H
 
+#include <iostream>
 #include <vector>
 #include <string>
 #include <map>
-#include <iostream>
 #include <algorithm>
 #include "user.h"
-#include "payment.h"
 using namespace std;
 
 class Subscriber : public User
 {
 public:
     int subscriberId;
-    string name;
-    int age;
-    bool active;
     string address;
     bool paymentPending;
     int amountPending;
@@ -36,6 +32,8 @@ public:
     bool requestHaltOfSubscriptions();
     bool payDues();
     bool stopService();
+
+    friend class Payment;
 };
 
 

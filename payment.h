@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "subscriber.h"
 using namespace std;
 
 class Payment
@@ -16,6 +17,7 @@ public:
     bool successStatus;
 
     Payment();
+    bool payDues(Subscriber& sub);
     bool carryOutTransaction(int _id,string dep,string coll,string dt,int amount);
 };
 

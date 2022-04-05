@@ -7,6 +7,7 @@
 #include "subscriber.h"
 #include "agent.h"
 #include "manager.h"
+#include "payment.h"
 #include "cash.h"
 #include "cheque.h"
 using namespace std;
